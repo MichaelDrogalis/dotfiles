@@ -14,7 +14,6 @@
 (setq cider-repl-display-help-banner nil)
 (setq backup-directory-alist `(("." . "~/.backup-emacs")))
 (setq org-log-done t)
-(setq org-agenda-files '("~/org"))
 
 (require 'package)
 
