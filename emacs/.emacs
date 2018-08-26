@@ -30,9 +30,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files
-   (quote
-    ("~/org/writing.org" "/Users/michaeldrogalis/org/meetings.org" "/Users/michaeldrogalis/org/reading.org")))
  '(package-selected-packages
    (quote
     (projectile cider json-mode rjsx-mode web-mode sass-mode paredit ensime scala-mode erlang yaml-mode auto-complete parent-mode auto-complete-clang-async go-mode dockerfile-mode clojure-mode clojure-mode-extra-font-locking ace-jump-mode))))
