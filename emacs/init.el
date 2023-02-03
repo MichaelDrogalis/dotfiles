@@ -2,8 +2,17 @@
       visible-bell t
       column-number-mode t
       scroll-step 1
+      tool-bar-mode -1
       menu-bar-mode -1
-      backup-directory-alist `(("." . "~/.backup-emacs")))
+      scroll-bar-mode -1)
+
+(setq version-control t     ;; Use version numbers for backups.
+      kept-new-versions 10  ;; Number of newest versions to keep.
+      kept-old-versions 0   ;; Number of oldest versions to keep.
+      delete-old-versions t ;; Don't ask to delete excess backup versions.
+      backup-by-copying t)  ;; Copy all files, don't rename them.
+
+(setq backup-directory-alist `(("." . "~/.saves")))
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
@@ -45,9 +54,6 @@
 (global-hl-line-mode t)
 
 (use-package company
-  :bind (:map company-active-map
-         ("C-n" . company-select-next)
-         ("C-p" . company-select-previous))
   :config
   (setq company-idle-delay 0.3)
   (global-company-mode t))
@@ -98,20 +104,42 @@
 
 (use-package rjsx-mode
              :ensure t
-             :mode "\\.js\\'")
+             :mode "\\.js\\'"
+	     :mode "\\.tsx\\'")
+
+(use-package typescript-mode
+  :ensure t
+  :mode "\\.tsx\\'")
 
 (defun setup-tide-mode ()
   (interactive)
   (tide-setup)
   (flycheck-mode +1)
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
   (tide-hl-identifier-mode +1)
+  ;; company is an optional dependency. You have to
+  ;; install it separately via package-install
+  ;; `M-x package-install [ret] company`
   (company-mode +1))
 
 (use-package tide
   :ensure t
-  :after (rjsx-mode company flycheck)
-  :hook (rjsx-mode . setup-tide-mode))
+  :after (typescript-mode rjsx-mode company flycheck)
+  :init
+  (add-hook 'before-save-hook 'tide-format-before-save)
+  (add-hook 'typescript-mode-hook #'setup-tide-mode)
+  :config (setq company-tooltip-align-annotations t))
+
+(use-package web-mode
+  :ensure t
+  :mode "\\.tsx\\'"
+  :init (add-hook 'web-mode-hook
+		  (lambda ()
+		    (when (string-equal "tsx" (file-name-extension buffer-file-name))
+                      (setup-tide-mode))))
+  :config
+  (flycheck-add-mode 'typescript-tslint 'web-mode))
 
 (use-package prettier-js
   :ensure t
