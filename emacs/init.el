@@ -37,14 +37,18 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(column-number-mode t)
+ '(global-display-line-numbers-mode t)
+ '(menu-bar-mode -1)
  '(package-selected-packages
-   '(modus-themes solo-jazz-theme company company-mode use-package tide projectile ace-jump-mode paredit prettier-js rjsx-mode solarized-theme)))
+   '(flycheck tree-sitter-langs tree-sitter modus-themes solo-jazz-theme company company-mode use-package tide projectile ace-jump-mode paredit prettier-js rjsx-mode solarized-theme))
+ '(tool-bar-mode -1))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:family "Menlo" :foundry "nil" :slant normal :weight regular :height 140 :width normal)))))
 
 (global-set-key (kbd "C-x <up>") 'windmove-up)
 (global-set-key (kbd "C-x <down>") 'windmove-down)
@@ -52,11 +56,6 @@
 (global-set-key (kbd "C-x <right>") 'windmove-right)
 
 (global-hl-line-mode t)
-
-(use-package company
-  :config
-  (setq company-idle-delay 0.3)
-  (global-company-mode t))
 
 (use-package ido-completing-read+
   :ensure t
@@ -74,8 +73,6 @@
 
 (use-package smex
   :ensure t
-  ;; Using counsel-M-x for now. Remove this permanently if counsel-M-x works better.
-  :disabled t
   :config
   (setq smex-save-file (concat user-emacs-directory ".smex-items"))
   (smex-initialize)
@@ -98,54 +95,6 @@
          ("M-{" . paredit-wrap-curly))
   :diminish nil)
 
-(use-package flycheck
-  :ensure t
-  :init (global-flycheck-mode))
-
-(use-package rjsx-mode
-             :ensure t
-             :mode "\\.js\\'"
-	     :mode "\\.tsx\\'")
-
-(use-package typescript-mode
-  :ensure t
-  :mode "\\.tsx\\'")
-
-(defun setup-tide-mode ()
-  (interactive)
-  (tide-setup)
-  (flycheck-mode +1)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (eldoc-mode +1)
-  (tide-hl-identifier-mode +1)
-  ;; company is an optional dependency. You have to
-  ;; install it separately via package-install
-  ;; `M-x package-install [ret] company`
-  (company-mode +1))
-
-(use-package tide
-  :ensure t
-  :after (typescript-mode rjsx-mode company flycheck)
-  :init
-  (add-hook 'before-save-hook 'tide-format-before-save)
-  (add-hook 'typescript-mode-hook #'setup-tide-mode)
-  :config (setq company-tooltip-align-annotations t))
-
-(use-package web-mode
-  :ensure t
-  :mode "\\.tsx\\'"
-  :init (add-hook 'web-mode-hook
-		  (lambda ()
-		    (when (string-equal "tsx" (file-name-extension buffer-file-name))
-                      (setup-tide-mode))))
-  :config
-  (flycheck-add-mode 'typescript-tslint 'web-mode))
-
-(use-package prettier-js
-  :ensure t
-  :after (rjsx-mode)
-  :hook (rjsx-mode . prettier-js-mode))
-
 (use-package modus-themes
   :ensure t
   :config
@@ -154,3 +103,36 @@
 (use-package ace-jump-mode
   :ensure t
   :bind ("C-x SPC" . ace-jump-mode))
+
+(use-package company
+  :ensure t
+  :config
+  (setq company-idle-delay 0.3)
+  (global-company-mode t))
+
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode)
+  :config (setq flycheck-check-syntax-automatically '(save mode-enabled)))
+
+(use-package web-mode
+  :ensure t
+  :after (flycheck company)
+  :mode (("\\.ts\\'" . web-mode)
+	 ("\\.tsx\\'" . web-mode)
+	 ("\\.js\\'" . web-mode)
+	 ("\\.jsx\\'" . web-mode))
+  :config
+  (company-mode +1)
+  (eldoc-mode +1))
+
+(use-package prettier-js
+  :ensure t
+  :hook web-mode)
+
+(use-package tide
+  :ensure t
+  :after (web-mode prettier-js)
+  :hook ((web-mode . tide-setup)
+	 (web-mode . tide-hl-identifier-mode)
+	 (before-save . tide-format-before-save)))
