@@ -132,7 +132,7 @@
 
 (use-package tide
   :ensure t
-  :after (web-mode prettier-js)
+  :after (web-mode company flycheck)
   :hook ((web-mode . tide-setup)
-	 (web-mode . tide-hl-identifier-mode)
-	 (before-save . tide-format-before-save)))
+         (web-mode . tide-hl-identifier-mode)
+         (before-save . tide-format-before-save)))
