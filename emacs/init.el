@@ -113,7 +113,7 @@
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode)
-  :config (setq flycheck-check-syntax-automatically '(save mode-enabled)))
+  :config (setq flycheck-check-syntax-automatically '(save mode-enabled idle-change)))
 
 (use-package web-mode
   :ensure t
