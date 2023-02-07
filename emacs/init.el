@@ -21,7 +21,8 @@
 (setq package-list '(use-package))
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
-			 ("melpa-stable" . "https://stable.melpa.org/packages/")))
+			 ("melpa-stable" . "https://stable.melpa.org/packages/")
+			 ("gnu-devel" . "https://elpa.gnu.org/devel/")))
 
 (package-initialize)
 
@@ -41,7 +42,7 @@
  '(global-display-line-numbers-mode t)
  '(menu-bar-mode -1)
  '(package-selected-packages
-   '(yasnippet-snippets yasnippet flycheck tree-sitter-langs tree-sitter modus-themes solo-jazz-theme company company-mode use-package tide projectile ace-jump-mode paredit prettier-js rjsx-mode solarized-theme))
+   '(compat magit-version magit yasnippet-snippets yasnippet flycheck tree-sitter-langs tree-sitter modus-themes solo-jazz-theme company company-mode use-package tide projectile ace-jump-mode paredit prettier-js rjsx-mode solarized-theme))
  '(tool-bar-mode -1))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -144,3 +145,8 @@
 (use-package yasnippet-snippets
   :ensure t
   :after (yasnippet))
+
+(use-package magit
+  :ensure t
+  :config
+  (add-hook 'after-save-hook 'magit-after-save-refresh-status t))
