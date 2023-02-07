@@ -41,7 +41,7 @@
  '(global-display-line-numbers-mode t)
  '(menu-bar-mode -1)
  '(package-selected-packages
-   '(flycheck tree-sitter-langs tree-sitter modus-themes solo-jazz-theme company company-mode use-package tide projectile ace-jump-mode paredit prettier-js rjsx-mode solarized-theme))
+   '(yasnippet-snippets yasnippet flycheck tree-sitter-langs tree-sitter modus-themes solo-jazz-theme company company-mode use-package tide projectile ace-jump-mode paredit prettier-js rjsx-mode solarized-theme))
  '(tool-bar-mode -1))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -136,3 +136,11 @@
   :hook ((web-mode . tide-setup)
          (web-mode . tide-hl-identifier-mode)
          (before-save . tide-format-before-save)))
+
+(use-package yasnippet
+  :ensure t
+  :config (yas-global-mode 1))
+
+(use-package yasnippet-snippets
+  :ensure t
+  :after (yasnippet))
