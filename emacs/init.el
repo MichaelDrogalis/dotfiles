@@ -42,7 +42,7 @@
  '(global-display-line-numbers-mode t)
  '(menu-bar-mode -1)
  '(package-selected-packages
-   '(compat magit-version magit yasnippet-snippets yasnippet flycheck tree-sitter-langs tree-sitter modus-themes solo-jazz-theme company company-mode use-package tide projectile ace-jump-mode paredit prettier-js rjsx-mode solarized-theme))
+   '(vterm compat magit-version magit yasnippet-snippets yasnippet flycheck tree-sitter-langs tree-sitter modus-themes solo-jazz-theme company company-mode use-package tide projectile ace-jump-mode paredit prettier-js rjsx-mode solarized-theme))
  '(tool-bar-mode -1))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -150,3 +150,6 @@
   :ensure t
   :config
   (add-hook 'after-save-hook 'magit-after-save-refresh-status t))
+
+(use-package vterm
+  :ensure t)
