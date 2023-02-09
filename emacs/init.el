@@ -14,6 +14,9 @@
 
 (setq backup-directory-alist `(("." . "~/.saves")))
 
+(setq auto-save-file-name-transforms
+      `((".*" ,(concat user-emacs-directory "auto-save/") t)))
+
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (global-display-line-numbers-mode t)
@@ -42,7 +45,7 @@
  '(global-display-line-numbers-mode t)
  '(menu-bar-mode -1)
  '(package-selected-packages
-   '(vterm compat magit-version magit yasnippet-snippets yasnippet flycheck tree-sitter-langs tree-sitter modus-themes solo-jazz-theme company company-mode use-package tide projectile ace-jump-mode paredit prettier-js rjsx-mode solarized-theme))
+   '(lsp-tailwindcss vterm compat magit-version magit yasnippet-snippets yasnippet flycheck tree-sitter-langs tree-sitter modus-themes solo-jazz-theme company company-mode use-package tide projectile ace-jump-mode paredit prettier-js rjsx-mode solarized-theme))
  '(tool-bar-mode -1))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -129,7 +132,7 @@
 
 (use-package prettier-js
   :ensure t
-  :hook web-mode)
+  :hook (web-mode css-mode))
 
 (use-package tide
   :ensure t
