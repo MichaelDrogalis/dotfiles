@@ -155,7 +155,9 @@
   (add-hook 'after-save-hook 'magit-after-save-refresh-status t))
 
 (use-package vterm
-  :ensure t)
+y  :ensure t
+  :config
+  (vterm-send-string "source ~/.bashrc"))
 
 (use-package multiple-cursors
   :ensure t)
