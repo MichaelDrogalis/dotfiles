@@ -14,9 +14,6 @@
 
 (setq backup-directory-alist `(("." . "~/.saves")))
 
-(setq auto-save-file-name-transforms
-      `((".*" ,(concat user-emacs-directory "auto-save/") t)))
-
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (global-display-line-numbers-mode t)
@@ -161,3 +158,9 @@ y  :ensure t
 
 (use-package multiple-cursors
   :ensure t)
+
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize)))
