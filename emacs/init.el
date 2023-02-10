@@ -14,9 +14,6 @@
 
 (setq backup-directory-alist `(("." . "~/.saves")))
 
-(setq auto-save-file-name-transforms
-      `((".*" ,(concat user-emacs-directory "auto-save/") t)))
-
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (global-display-line-numbers-mode t)
