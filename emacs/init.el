@@ -42,7 +42,7 @@
  '(global-display-line-numbers-mode t)
  '(menu-bar-mode -1)
  '(package-selected-packages
-   '(multiple-cursors lsp-tailwindcss vterm compat magit-version magit yasnippet-snippets yasnippet flycheck tree-sitter-langs tree-sitter modus-themes solo-jazz-theme company company-mode use-package tide projectile ace-jump-mode paredit prettier-js rjsx-mode solarized-theme))
+   '(clojure-mode clojure multiple-cursors lsp-tailwindcss vterm compat magit-version magit yasnippet-snippets yasnippet flycheck tree-sitter-langs tree-sitter modus-themes solo-jazz-theme company company-mode use-package tide projectile ace-jump-mode paredit prettier-js rjsx-mode solarized-theme))
  '(tool-bar-mode -1))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -129,7 +129,9 @@
 
 (use-package prettier-js
   :ensure t
-  :hook (web-mode css-mode))
+  :hook (web-mode css-mode)
+  :config
+  (setq prettier-js-args '("--print-width" "120")))
 
 (use-package tide
   :ensure t
@@ -162,3 +164,6 @@
   :config
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
+
+(use-package clojure-mode
+  :ensure t)
