@@ -22,6 +22,7 @@
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
 			 ("melpa-stable" . "https://stable.melpa.org/packages/")
+			 ("elpa" . "https://elpa.gnu.org/packages/")
 			 ("gnu-devel" . "https://elpa.gnu.org/devel/")))
 
 (package-initialize)
@@ -42,7 +43,7 @@
  '(global-display-line-numbers-mode t)
  '(menu-bar-mode -1)
  '(package-selected-packages
-   '(clojure-mode clojure exec-path-from-shell multiple-cursors lsp-tailwindcss vterm compat magit-version magit yasnippet-snippets yasnippet flycheck tree-sitter-langs tree-sitter modus-themes solo-jazz-theme company company-mode use-package tide projectile ace-jump-mode paredit prettier-js rjsx-mode solarized-theme))
+   '(cider clojure-mode clojure exec-path-from-shell multiple-cursors lsp-tailwindcss vterm compat magit-version magit yasnippet-snippets yasnippet flycheck tree-sitter-langs tree-sitter modus-themes solo-jazz-theme company company-mode use-package tide projectile ace-jump-mode paredit prettier-js rjsx-mode solarized-theme))
  '(tool-bar-mode -1))
 
 (custom-set-faces
@@ -169,4 +170,7 @@
     (exec-path-from-shell-initialize)))
 
 (use-package clojure-mode
+  :ensure t)
+
+(use-package cider
   :ensure t)
