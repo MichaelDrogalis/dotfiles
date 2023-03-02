@@ -173,4 +173,5 @@
   :ensure t)
 
 (use-package cider
-  :ensure t)
+  :ensure t
+  :pin melpa)
