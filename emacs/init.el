@@ -43,8 +43,10 @@
  '(global-display-line-numbers-mode t)
  '(menu-bar-mode -1)
  '(package-selected-packages
-   '(cider clojure-mode clojure exec-path-from-shell multiple-cursors lsp-tailwindcss vterm compat magit-version magit yasnippet-snippets yasnippet flycheck tree-sitter-langs tree-sitter modus-themes solo-jazz-theme company company-mode use-package tide projectile ace-jump-mode paredit prettier-js rjsx-mode solarized-theme))
- '(tool-bar-mode -1))
+   '(rainbow-delimiters web-mode cider clojure-mode clojure exec-path-from-shell multiple-cursors lsp-tailwindcss vterm compat magit-version magit yasnippet-snippets yasnippet flycheck tree-sitter-langs tree-sitter modus-themes solo-jazz-theme company company-mode use-package tide projectile ace-jump-mode paredit prettier-js rjsx-mode solarized-theme))
+ '(tool-bar-mode -1)
+ '(warning-suppress-log-types '((use-package) (use-package) (use-package)))
+ '(warning-suppress-types '((use-package) (use-package))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -94,6 +96,7 @@
   (add-hook 'scheme-mode-hook #'enable-paredit-mode)
   :config
   (show-paren-mode t)
+  (define-key paredit-mode-map (kbd "RET") nil)
   :bind (("M-[" . paredit-wrap-square)
          ("M-{" . paredit-wrap-curly))
   :diminish nil)
@@ -174,4 +177,11 @@
 
 (use-package cider
   :ensure t
-  :pin melpa)
+  :pin melpa
+  :config
+  (setq cider-repl-display-help-banner nil))
+
+(use-package rainbow-delimiters
+  :ensure t
+  :init
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
