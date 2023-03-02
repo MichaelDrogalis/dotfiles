@@ -114,6 +114,7 @@
   :ensure t
   :config
   (setq company-idle-delay 0.3)
+  (setq tab-always-indent 'complete)
   (global-company-mode t))
 
 (use-package flycheck
@@ -147,7 +148,13 @@
 
 (use-package yasnippet
   :ensure t
-  :config (yas-global-mode 1))
+  :config
+  (yas-global-mode 1)
+  (global-set-key (kbd "C-;") 'yas-expand)
+  :bind
+  (:map yas-minor-mode-map
+        ("TAB" . nil)
+        ("<tab>" . nil)))
 
 (use-package yasnippet-snippets
   :ensure t
