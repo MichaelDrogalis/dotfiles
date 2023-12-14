@@ -18,6 +18,10 @@
 
 (global-display-line-numbers-mode t)
 
+(rassq-delete-all 'change-log-mode auto-mode-alist)
+
+(setq-default indent-tabs-mode nil)
+
 (setq package-list '(use-package))
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
@@ -195,5 +199,3 @@
 
 (use-package json-mode
   :ensure t)
-
-(rassq-delete-all 'change-log-mode auto-mode-alist)
