@@ -1,3 +1,5 @@
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 alias l="ls -lG"
 
 vterm_printf() {

@@ -43,7 +43,7 @@
  '(global-display-line-numbers-mode t)
  '(menu-bar-mode -1)
  '(package-selected-packages
-   '(rainbow-delimiters web-mode cider clojure-mode clojure exec-path-from-shell multiple-cursors lsp-tailwindcss vterm compat magit-version magit yasnippet-snippets yasnippet flycheck tree-sitter-langs tree-sitter modus-themes solo-jazz-theme company company-mode use-package tide projectile ace-jump-mode paredit prettier-js rjsx-mode solarized-theme))
+   '(json-mode rainbow-delimiters web-mode cider clojure-mode clojure exec-path-from-shell multiple-cursors lsp-tailwindcss vterm compat magit-version magit yasnippet-snippets yasnippet flycheck tree-sitter-langs tree-sitter modus-themes solo-jazz-theme company company-mode use-package tide projectile ace-jump-mode paredit prettier-js rjsx-mode solarized-theme))
  '(tool-bar-mode -1)
  '(warning-suppress-log-types '((use-package) (use-package) (use-package)))
  '(warning-suppress-types '((use-package) (use-package))))
@@ -104,7 +104,7 @@
 (use-package modus-themes
   :ensure t
   :config
-  (load-theme 'modus-operandi t))
+  (load-theme 'modus-vivendi t))
 
 (use-package ace-jump-mode
   :ensure t
@@ -192,3 +192,8 @@
   :ensure t
   :init
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+
+(use-package json-mode
+  :ensure t)
+
+(rassq-delete-all 'change-log-mode auto-mode-alist)
