@@ -47,7 +47,7 @@
  '(global-display-line-numbers-mode t)
  '(menu-bar-mode -1)
  '(package-selected-packages
-   '(json-mode rainbow-delimiters web-mode cider clojure-mode clojure exec-path-from-shell multiple-cursors lsp-tailwindcss vterm compat magit-version magit yasnippet-snippets yasnippet flycheck tree-sitter-langs tree-sitter modus-themes solo-jazz-theme company company-mode use-package tide projectile ace-jump-mode paredit prettier-js rjsx-mode solarized-theme))
+   '(terraform terraform-mode json-mode rainbow-delimiters web-mode cider clojure-mode clojure exec-path-from-shell multiple-cursors lsp-tailwindcss vterm compat magit-version magit yasnippet-snippets yasnippet flycheck tree-sitter-langs tree-sitter modus-themes solo-jazz-theme company company-mode use-package tide projectile ace-jump-mode paredit prettier-js rjsx-mode solarized-theme))
  '(tool-bar-mode -1)
  '(warning-suppress-log-types '((use-package) (use-package) (use-package)))
  '(warning-suppress-types '((use-package) (use-package))))
@@ -198,4 +198,7 @@
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
 (use-package json-mode
+  :ensure t)
+
+(use-package terraform
   :ensure t)
