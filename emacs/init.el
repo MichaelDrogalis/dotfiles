@@ -1,3 +1,5 @@
+(tool-bar-mode -1)
+
 (setq inhibit-startup-message t
       visible-bell t
       column-number-mode t
