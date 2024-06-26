@@ -14,6 +14,8 @@
 
 (setq backup-directory-alist `(("." . "~/.saves")))
 
+(set-face-attribute 'default nil :height 170)
+
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (global-display-line-numbers-mode t)
@@ -28,6 +30,8 @@
 			 ("melpa-stable" . "https://stable.melpa.org/packages/")
 			 ("elpa" . "https://elpa.gnu.org/packages/")
 			 ("gnu-devel" . "https://elpa.gnu.org/devel/")))
+
+(tool-bar-mode -1)
 
 (package-initialize)
 
@@ -47,7 +51,7 @@
  '(global-display-line-numbers-mode t)
  '(menu-bar-mode -1)
  '(package-selected-packages
-   '(rsjx rsjx-mode js2-mode yaml-mode terraform terraform-mode json-mode rainbow-delimiters web-mode cider clojure-mode clojure exec-path-from-shell multiple-cursors lsp-tailwindcss vterm compat magit-version magit yasnippet-snippets yasnippet flycheck tree-sitter-langs tree-sitter modus-themes solo-jazz-theme company company-mode use-package tide projectile ace-jump-mode paredit prettier-js rjsx-mode solarized-theme))
+   '(hcl-mode rsjx rsjx-mode js2-mode yaml-mode terraform terraform-mode json-mode rainbow-delimiters web-mode cider clojure-mode clojure exec-path-from-shell multiple-cursors lsp-tailwindcss vterm compat magit-version magit yasnippet-snippets yasnippet flycheck tree-sitter-langs tree-sitter modus-themes solo-jazz-theme company company-mode use-package tide projectile ace-jump-mode paredit prettier-js rjsx-mode solarized-theme))
  '(tool-bar-mode -1)
  '(warning-suppress-log-types '((use-package) (use-package) (use-package)))
  '(warning-suppress-types '((use-package) (use-package))))
@@ -206,4 +210,5 @@
 (use-package rjsx-mode
   :ensure t)
 
-(tool-bar-mode -1)
+(use-package hcl-mode
+  :ensure t)
