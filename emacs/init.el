@@ -14,7 +14,7 @@
 
 (setq backup-directory-alist `(("." . "~/.saves")))
 
-(set-face-attribute 'default nil :height 180)
+(set-face-attribute 'default nil :height 175)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
