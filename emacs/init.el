@@ -14,7 +14,7 @@
 
 (setq backup-directory-alist `(("." . "~/.saves")))
 
-(set-face-attribute 'default nil :height 170)
+(set-face-attribute 'default nil :height 180)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
@@ -212,3 +212,16 @@
 
 (use-package hcl-mode
   :ensure t)
+
+(defun clerk-show ()
+  (interactive)
+  (when-let
+      ((filename
+        (buffer-file-name)))
+    (save-buffer)
+    (cider-interactive-eval
+     "(nextjournal.clerk/clear-cache!)")
+    (cider-interactive-eval
+     (concat "(nextjournal.clerk/show! \"" filename "\")"))))
+
+(define-key clojure-mode-map (kbd "<M-return>") 'clerk-show)

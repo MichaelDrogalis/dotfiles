@@ -20,3 +20,6 @@ if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
         tput clear;
     }
 fi
+
+# Created by `pipx` on 2025-06-04 17:45:22
+export PATH="$PATH:/Users/michaeldrogalis/.local/bin"
