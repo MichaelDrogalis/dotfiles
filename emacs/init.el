@@ -51,7 +51,7 @@
  '(global-display-line-numbers-mode t)
  '(menu-bar-mode -1)
  '(package-selected-packages
-   '(docker docker-mode hcl-mode rsjx rsjx-mode js2-mode yaml-mode terraform terraform-mode json-mode rainbow-delimiters web-mode cider clojure-mode clojure exec-path-from-shell multiple-cursors lsp-tailwindcss vterm compat magit-version magit yasnippet-snippets yasnippet flycheck tree-sitter-langs tree-sitter modus-themes solo-jazz-theme company company-mode use-package tide projectile ace-jump-mode paredit prettier-js rjsx-mode solarized-theme))
+   '(dockerfile-mode docker docker-mode hcl-mode rsjx rsjx-mode js2-mode yaml-mode terraform terraform-mode json-mode rainbow-delimiters web-mode cider clojure-mode clojure exec-path-from-shell multiple-cursors lsp-tailwindcss vterm compat magit-version magit yasnippet-snippets yasnippet flycheck tree-sitter-langs tree-sitter modus-themes solo-jazz-theme company company-mode use-package tide projectile ace-jump-mode paredit prettier-js rjsx-mode solarized-theme))
  '(tool-bar-mode -1)
  '(warning-suppress-log-types '((use-package) (use-package) (use-package)))
  '(warning-suppress-types '((use-package) (use-package))))
@@ -213,7 +213,7 @@
 (use-package hcl-mode
   :ensure t)
 
-(use-package docker
+(use-package dockerfile-mode
   :ensure t)
 
 (defun clerk-show ()
